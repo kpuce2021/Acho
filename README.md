@@ -1,3 +1,2 @@
-# Acho
+# Hairstyle preview
 9team
-Hairstyle preview
