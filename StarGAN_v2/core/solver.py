@@ -9,10 +9,10 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-from StarGAN_v2.core.model import build_model
-from StarGAN_v2.core.checkpoint import CheckpointIO
-from StarGAN_v2.core.data_loader import InputFetcher
-import StarGAN_v2.core.utils as utils
+from core.model import build_model
+from core.checkpoint import CheckpointIO
+from core.data_loader import InputFetcher
+import core.utils as utils
 
 class Solver(nn.Module):
     def __init__(self, args):
