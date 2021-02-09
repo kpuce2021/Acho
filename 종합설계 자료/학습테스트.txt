@@ -1,6 +1,0 @@
-002000_nets_ema.ckpt
-002000_optims.ckpt
-002000_nets.ckpt
-
-iteration을많이 하는게 중요
-1000번째까지는 비슷 2000번째부터 차이남
