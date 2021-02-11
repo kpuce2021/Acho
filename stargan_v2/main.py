@@ -116,7 +116,7 @@ if __name__ == '__main__':
                         help='Number of total iterations')
     parser.add_argument('--resume_iter', type=int, default=0,
                         help='Iterations to resume training/testing')
-    parser.add_argument('--batch_size', type=int, default=8,
+    parser.add_argument('--batch_size', type=int, default=5,
                         help='Batch size for training')
     parser.add_argument('--val_batch_size', type=int, default=32,
                         help='Batch size for validation')
@@ -175,7 +175,7 @@ if __name__ == '__main__':
     # step size
     parser.add_argument('--print_every', type=int, default=10)
     parser.add_argument('--sample_every', type=int, default=5000)
-    parser.add_argument('--save_every', type=int, default=10000)
+    parser.add_argument('--save_every', type=int, default=2000)
     parser.add_argument('--eval_every', type=int, default=50000)
 
     args = parser.parse_args()
