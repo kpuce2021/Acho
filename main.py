@@ -37,9 +37,7 @@ def main(args):
             shutil.move(sourceFile, destination)
             count = count + 1
         else:
-          print("aaaaaaaaaaa")
           for f in filesmale:
-            print("aaaaaaaaaaa")
             sourceFile = os.path.join(sourcemale, f)
             print( "Moving " + sourceFile + " to " + destination  )
             shutil.move(sourceFile, destination)    
@@ -72,11 +70,13 @@ def main(args):
         shutil.rmtree("./data/ref/male/")
         shutil.rmtree("./data/src/female/")
         shutil.rmtree("./data/src/male/")
+        shutil.rmtree("./data/srcc/")
 
         os.mkdir("./data/ref/female")
         os.mkdir("./data/ref/male")
         os.mkdir("./data/src/female")
         os.mkdir("./data/src/male")
+        os.mkdir("./data/srcc")
     
     else:
         raise NotImplementedError
@@ -102,7 +102,7 @@ if __name__ == '__main__':
     parser.add_argument('--style_dim', type=int, default=64,help='Style code dimension')
     parser.add_argument('--w_hpf', type=float, default=1, help='weight for high-pass filtering')
 
-    parser.add_argument('--resume_iter', type=int, default=175000,help='Iterations to resume training/testing')
+    parser.add_argument('--resume_iter', type=int, default=184000,help='Iterations to resume training/testing')
     parser.add_argument('--checkpoint_dir', type=str, default='pretrained_network/StarGAN')
     parser.add_argument('--wing_path', type=str, default='pretrained_network/StarGAN/wing.ckpt')
 
