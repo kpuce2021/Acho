@@ -18,29 +18,39 @@ def main(args):
 
     sourcefemale = './data/src/female'
     sourcemale = './data/src/male'
+
+    ex_female = './data/src/female/*.*'
+    ex_male = './data/src/mamale/*.*'
+
     destination = './data/srcc'
+    reffemale = './data/ref/female'
+    refmale = './data/ref/male'
 
     filesfemale = os.listdir(sourcefemale)
     filesmale = os.listdir(sourcemale)
 
     count = 0
+    exist = 0
     
     if args.mode == 'styling':
         # StarGAN > Parsing > SEAN
 
         stargan(args)
     
-        if os.path.exists(sourcefemale) == True:
+        for f in filesfemale:
+            exist += 1
+
+        if exist != 0:
           for f in filesfemale:
             sourceFile = os.path.join(sourcefemale, f)
-            print( "Moving " + sourceFile + " to " + destination  )
-            shutil.move(sourceFile, destination)
+            print( "copying " + sourceFile + " to " + destination  )
+            shutil.copy(sourceFile, destination)
             count = count + 1
         else:
           for f in filesmale:
             sourceFile = os.path.join(sourcemale, f)
-            print( "Moving " + sourceFile + " to " + destination  )
-            shutil.move(sourceFile, destination)    
+            print( "copying " + sourceFile + " to " + destination  )
+            shutil.copy(sourceFile, destination)    
             
          
         parsing(respth='./results/label/src', dspth='./data/srcc') # parsing src_image
@@ -53,15 +63,20 @@ def main(args):
 
         if count == 1:
           for f in filesresult:
+            
             sourceFile = os.path.join(sourceresult, f)
-            print( "Moving " + sourceFile + " to " + sourcefemale  )
-            shutil.move(sourceFile, sourcefemale)
+            print( "Moving " + sourceFile + " to " + reffemale  )
+            shutil.rmtree("./data/ref/female/")
+            os.mkdir("./data/ref/female")
+            shutil.move(sourceFile, reffemale)
             count = 0
         else:
           for f in filesresult:
             sourceFile = os.path.join(sourceresult, f)
-            print( "Moving " + sourceFile + " to " + sourcemale  )
-            shutil.move(sourceFile, sourcemale)
+            print( "Moving " + sourceFile + " to " + refmale  )
+            shutil.rmtree("./data/ref/male/")
+            os.mkdir("./data/ref/male")
+            shutil.move(sourceFile, refmale)
 
         stargan(args)
 
