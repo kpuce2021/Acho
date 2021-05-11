@@ -19,9 +19,6 @@ def main(args):
     sourcefemale = './data/src/female'
     sourcemale = './data/src/male'
 
-    ex_female = './data/src/female/*.*'
-    ex_male = './data/src/mamale/*.*'
-
     destination = './data/srcc'
     reffemale = './data/ref/female'
     refmale = './data/ref/male'
