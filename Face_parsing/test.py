@@ -48,7 +48,7 @@ def parsing(respth='./data/label', dspth='./data', cp='79999_iter.pth'):
     n_classes = 19
     net = BiSeNet(n_classes=n_classes)
     net.cuda()
-    save_pth = osp.join('./pretrained_network/parsing', cp)
+    save_pth = osp.join('./Acho/pretrained_network/parsing', cp)
     net.load_state_dict(torch.load(save_pth))
     net.eval()
 
