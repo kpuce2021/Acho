@@ -1,4 +1,6 @@
 import torch
+import time
+
 
 import argparse
 import shutil
@@ -10,33 +12,37 @@ from stargan_v2.test import stargan
 from SEAN.test import reconstruct
 
 def main(args):
-    print(args)
     torch.manual_seed(args.seed)
-
+    
     if os.path.exists("./results") == True:
-      shutil.rmtree("./results") 
+        shutil.rmtree("./results") 
 
-    sourceYes = './data/src/yes'
-    sourceNo = './data/src/no'
-    sourceMiddle = './data/src/middle'
+    sourceYes = './Acho/data/src/yes'
+    sourceNo = './Acho/data/src/no'
+    sourceMiddle = './Acho/data/src/middle'
 
 
-    destination = './data/srcc'
-    refYes = './data/ref/yes'
-    refNo = './data/ref/no'
+    destination = './Acho/data/srcc'
+    refYes = './Acho/data/ref/yes'
+    refNo = './Acho/data/ref/no'
     refMiddle = './data/ref/middle'
-
+    
     filesYes = os.listdir(sourceYes)
     filesNo = os.listdir(sourceNo)
     filesMiddle = os.listdir(sourceMiddle)
 
+
+
     count = 0
     exist = 0
-    
+
     if args.mode == 'styling':
         # StarGAN > Parsing > SEAN
-
+        
+        
         stargan(args)
+        
+
     
         for f in filesYes:
             exist = 1
@@ -45,76 +51,76 @@ def main(args):
 
 
         if exist == 1:
-          for f in filesYes:
-            sourceFile = os.path.join(sourceYes, f)
-            print( "copying " + sourceFile + " to " + destination  )
-            shutil.copy(sourceFile, destination)
-            count = count + 1
+            for f in filesYes:   
+                sourceFile = os.path.join(sourceYes, f)
+                print( "copying " + sourceFile + " to " + destination  )
+                shutil.copy(sourceFile, destination)
+                count = count + 1
         elif exist == 2:
-          for f in filesMiddle:
-            sourceFile = os.path.join(sourceMiddle, f)
-            print( "copying " + sourceFile + " to " + destination  )
-            shutil.copy(sourceFile, destination)
-            count = count + 2
+            for f in filesMiddle:
+                sourceFile = os.path.join(sourceMiddle, f)
+                print( "copying " + sourceFile + " to " + destination  )
+                shutil.copy(sourceFile, destination)
+                count = count + 2
         else:
-          for f in filesNo:
-            sourceFile = os.path.join(sourceNo, f)
-            print( "copying " + sourceFile + " to " + destination  )
-            shutil.copy(sourceFile, destination)    
+            for f in filesNo:
+                sourceFile = os.path.join(sourceNo, f)
+                print( "copying " + sourceFile + " to " + destination  )
+                shutil.copy(sourceFile, destination)    
             
          
-        parsing(respth='./results/label/src', dspth='./data/srcc') # parsing src_image
-        parsing(respth='./results/label/others', dspth='./results/img') # parsing fake_image
+        parsing(respth='./Acho/results/label/src', dspth='./Acho/data/srcc') # parsing src_image
+        parsing(respth='./Acho/results/label/others', dspth='./Acho/results/img') # parsing fake_image
 
         reconstruct(args.mode)
 
-        sourceresult = './results/results/synthesized_image' 
+        sourceresult = './Acho/results/results/synthesized_image' 
         filesresult = os.listdir(sourceresult)
 
         if count == 1:
-          for f in filesresult:
+            for f in filesresult:
             
-            sourceFile = os.path.join(sourceresult, f)
-            print( "Moving " + sourceFile + " to " + refYes  )
-            shutil.rmtree("./data/ref/yes/")
-            os.mkdir("./data/ref/yes")
-            shutil.move(sourceFile, refYes)
-            count = 0
+                sourceFile = os.path.join(sourceresult, f)
+                print( "Moving " + sourceFile + " to " + refYes  )
+                shutil.rmtree("./Acho/data/ref/yes/")
+                os.mkdir("./Acho/data/ref/yes")
+                shutil.move(sourceFile, refYes)
+                count = 0
         elif count == 2:
-          for f in filesresult:
+            for f in filesresult:
             
-            sourceFile = os.path.join(sourceresult, f)
-            print( "Moving " + sourceFile + " to " + refMiddle  )
-            shutil.rmtree("./data/ref/middle/")
-            os.mkdir("./data/ref/middle")
-            shutil.move(sourceFile, refMiddle)
-            count = 0
+                sourceFile = os.path.join(sourceresult, f)
+                print( "Moving " + sourceFile + " to " + refMiddle  )
+                shutil.rmtree("./Acho/data/ref/middle/")
+                os.mkdir("./Acho/data/ref/middle")
+                shutil.move(sourceFile, refMiddle)
+                count = 0
         else:
-          for f in filesresult:
-            sourceFile = os.path.join(sourceresult, f)
-            print( "Moving " + sourceFile + " to " + refNo  )
-            shutil.rmtree("./data/ref/no/")
-            os.mkdir("./data/ref/no")
-            shutil.move(sourceFile, refNo)
+            for f in filesresult:
+                sourceFile = os.path.join(sourceresult, f)
+                print( "Moving " + sourceFile + " to " + refNo  )
+                shutil.rmtree("./Acho/data/ref/no/")
+                os.mkdir("./Acho/data/ref/no")
+                shutil.move(sourceFile, refNo)
 
         stargan(args)
 
       
-        shutil.rmtree("./data/ref/yes/")
-        shutil.rmtree("./data/ref/middle/")
-        shutil.rmtree("./data/ref/no/")
-        shutil.rmtree("./data/src/yes/")
-        shutil.rmtree("./data/src/middle/")
-        shutil.rmtree("./data/src/no/")
-        shutil.rmtree("./data/srcc/")
+        shutil.rmtree("./Acho/data/ref/yes/")
+        shutil.rmtree("./Acho/data/ref/middle/")
+        shutil.rmtree("./Acho/data/ref/no/")
+        shutil.rmtree("./Acho/data/src/yes/")
+        shutil.rmtree("./Acho/data/src/middle/")
+        shutil.rmtree("./Acho/data/src/no/")
+        shutil.rmtree("./Acho/data/srcc/")
 
-        os.mkdir("./data/ref/yes")
-        os.mkdir("./data/ref/middle")
-        os.mkdir("./data/ref/no")
-        os.mkdir("./data/src/yes")
-        os.mkdir("./data/src/middle")
-        os.mkdir("./data/src/no")
-        os.mkdir("./data/srcc")
+        os.mkdir("./Acho/data/ref/yes")
+        os.mkdir("./Acho/data/ref/middle")
+        os.mkdir("./Acho/data/ref/no")
+        os.mkdir("./Acho/data/src/yes")
+        os.mkdir("./Acho/data/src/middle")
+        os.mkdir("./Acho/data/src/no")
+        os.mkdir("./Acho/data/srcc")
     
     else:
         raise NotImplementedError
@@ -124,8 +130,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     
     # implement
-    parser.add_argument('--mode', type=str, required=True,
-                        choices=['styling'], help='set mode')
+    parser.add_argument('--mode', type=str,choices=['styling'],default = 'styling',help='set mode')
     parser.add_argument('--seed', type=int, default=777,
                         help='Seed for random number generator')
 
@@ -140,15 +145,15 @@ if __name__ == '__main__':
     parser.add_argument('--style_dim', type=int, default=64,help='Style code dimension')
     parser.add_argument('--w_hpf', type=float, default=1, help='weight for high-pass filtering')
 
-    parser.add_argument('--resume_iter', type=int, default=110000,help='Iterations to resume training/testing')
-    parser.add_argument('--checkpoint_dir', type=str, default='pretrained_network/StarGAN')
-    parser.add_argument('--wing_path', type=str, default='pretrained_network/StarGAN/wing.ckpt')
+    parser.add_argument('--resume_iter', type=int, default=110400,help='Iterations to resume training/testing')
+    parser.add_argument('--checkpoint_dir', type=str, default='Acho/pretrained_network/StarGAN')
+    parser.add_argument('--wing_path', type=str, default='Acho/pretrained_network/StarGAN/wing.ckpt')
 
-    parser.add_argument('--src_dir', type=str, default='./data/src')
-    parser.add_argument('--result_dir', type=str, default='./results/img')
+    parser.add_argument('--src_dir', type=str, default='./Acho/data/src')
+    parser.add_argument('--result_dir', type=str, default='./Acho/results/img')
     
     # for styling_ref
-    parser.add_argument('--ref_dir', type=str, default='./data/ref')
+    parser.add_argument('--ref_dir', type=str, default='./Acho/data/ref')
 
     # for styling_rand
     parser.add_argument('--target_domain', type=int, default=0)
