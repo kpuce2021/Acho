@@ -5,10 +5,6 @@ var config = require('./config.js');
 var multer  = require('multer');
 var AWS = require('aws-sdk');
 
-//var upload = multer({ dest: './Acho/data/src/yes' });
-var upload1 = multer({ dest: './Acho/data/src/no' });
-var upload2= multer({ dest: './Acho/data/src/middle' });
-
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null,'./Acho/data/src/yes');
