@@ -26,8 +26,8 @@ def reconstruct(mode):
     if mode == 'styling':
         opt.styling_mode = 'styling'
 
-        opt.image_dir = './results/img'
-        opt.label_dir = './results/label/others'
+        opt.image_dir = './Acho/results/img'
+        opt.label_dir = './Acho/results/label/others'
 
     oth_dataloader = data.create_dataloader(opt)
 
@@ -46,12 +46,3 @@ def reconstruct(mode):
             visualizer.save_images(visuals, img_path[b:b + 1],opt.results_dir,f'results_{i}')
     
         
-
-
-
-
-
-
-
-
-    
