@@ -27,28 +27,41 @@ def main(args):
     refNo = './Acho/data/ref/no'
     refMiddle = './data/ref/middle'
     
-    filesYes = os.listdir(sourceYes)
-    filesNo = os.listdir(sourceNo)
-    filesMiddle = os.listdir(sourceMiddle)
-
-
+    imageFolder = "./Acho/imageFolder"
+    filesimageFolder = os.listdir(imageFolder)
+    
+    
+    for f in filesimageFolder:
+        if f == "refyes.png":
+            shutil.move(imageFolder+"/"+f, refYes)
+      
+    for f in filesimageFolder:
+        if f == "srcyes.png":
+            shutil.move(imageFolder+"/"+f, sourceYes)
+            
+    shutil.rmtree("./Acho/imageFolder")
 
     count = 0
     exist = 0
 
+    filesYes = os.listdir(sourceYes)
+    filesNo = os.listdir(sourceNo)
+    filesMiddle = os.listdir(sourceMiddle)
+        
     if args.mode == 'styling':
         # StarGAN > Parsing > SEAN
         
         
         stargan(args)
         
-
+    
     
         for f in filesYes:
             exist = 1
         for f in filesMiddle:
             exist = 2
-
+        
+        print(exist,"xxxxxxxxxxxxxxxxx")
 
         if exist == 1:
             for f in filesYes:   
@@ -113,7 +126,8 @@ def main(args):
         shutil.rmtree("./Acho/data/src/middle/")
         shutil.rmtree("./Acho/data/src/no/")
         shutil.rmtree("./Acho/data/srcc/")
-
+        
+        os.mkdir("./Acho/imageFolder")
         os.mkdir("./Acho/data/ref/yes")
         os.mkdir("./Acho/data/ref/middle")
         os.mkdir("./Acho/data/ref/no")
