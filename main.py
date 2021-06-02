@@ -25,7 +25,7 @@ def main(args):
     destination = './Acho/data/srcc'
     refYes = './Acho/data/ref/yes'
     refNo = './Acho/data/ref/no'
-    refMiddle = './data/ref/middle'
+    refMiddle = './Acho/data/ref/middle'
     
     imageFolder = "./Acho/imageFolder"
     filesimageFolder = os.listdir(imageFolder)
