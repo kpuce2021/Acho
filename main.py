@@ -14,8 +14,8 @@ from SEAN.test import reconstruct
 def main(args):
     torch.manual_seed(args.seed)
     
-    if os.path.exists("./results") == True:
-        shutil.rmtree("./results") 
+    if os.path.exists("./Acho/results") == True:
+        shutil.rmtree("./Acho/results") 
 
     sourceYes = './Acho/data/src/yes'
     sourceNo = './Acho/data/src/no'
