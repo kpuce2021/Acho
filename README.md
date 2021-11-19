@@ -34,5 +34,32 @@
 ### 협업툴
 * trello <https://trello.com/b/9PJUd6r5>
 
+## 수행 시나리오
+<img width="755" alt="시스템 시나리오" src="https://user-images.githubusercontent.com/68904961/142597681-f1972f95-2e96-49e0-82dc-a5bdc66ed4ff.png">
+<br>
+
+## 시스템 구성도
+<img width="700" alt="구성도" src="https://user-images.githubusercontent.com/68904961/142598493-d1c1c4ea-2149-45e8-96fd-e86ba912cf7e.png">
+<br>
+
+## 실행화면
+
+### 1. 헤어스타일 변환
+<img width="197" alt="남녀선택" src="https://user-images.githubusercontent.com/68904961/142596581-466c112f-c318-4406-8f6a-1e5b2174a5ee.png">|
+<img width="200" alt="헤어스타일선택" src="https://user-images.githubusercontent.com/68904961/142596665-5ba9880c-9c42-4379-9d59-0ace389fc7f0.png">|
+<img width="200" alt="사진 넣기" src="https://user-images.githubusercontent.com/68904961/142597078-ca5a4332-caa1-4d74-b335-96d1c146455d.png">|
+<img width="200" alt="결과사진" src="https://user-images.githubusercontent.com/68904961/142597102-e034811c-853f-41a1-afd3-5c1dd7678bcb.png">
+<br><br>
+
+### 2. 헤어스타일 추천
+<img width="200" alt="헤어추천" src="https://user-images.githubusercontent.com/68904961/142597141-06902cf5-99e7-4acb-b616-4e99583a79c8.png">
+<br>
+
+### 3. 공유 커뮤니티 & 마이페이지
+<img width="200" alt="공유커뮤니티" src="https://user-images.githubusercontent.com/68904961/142597120-07682be3-24a8-4a74-a0ed-d5e7affd69b4.png">|
+<img width="200" alt="마이페이지" src="https://user-images.githubusercontent.com/68904961/142597149-4ed35188-20a4-4d48-a5fb-d7ca1d516213.png">
+
+
+
 
 
